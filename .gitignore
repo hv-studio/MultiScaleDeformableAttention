@@ -1,0 +1,4 @@
+*.so
+.idea/
+build/
+MultiScaleDeformableAttention.egg-info/
