@@ -25,7 +25,7 @@ requirements = ["torch", "torchvision"]
 
 def get_extensions():
     this_dir = os.path.dirname(os.path.abspath(__file__))
-    extensions_dir = os.path.join(this_dir, "src")
+    extensions_dir = "src"
 
     main_file = glob.glob(os.path.join(extensions_dir, "*.cpp"))
     source_cpu = glob.glob(os.path.join(extensions_dir, "cpu", "*.cpp"))
@@ -53,8 +53,7 @@ def get_extensions():
         else:
             raise NotImplementedError('No CUDA runtime is found. Please set FORCE_CUDA=1 or test it by running torch.cuda.is_available().')
 
-    sources = [os.path.join(extensions_dir, s) for s in sources]
-    include_dirs = [extensions_dir]
+    include_dirs = [os.path.join(this_dir, extensions_dir)]
     ext_modules = [
         extension(
             "MultiScaleDeformableAttention",
@@ -68,7 +67,7 @@ def get_extensions():
 
 setup(
     name="MultiScaleDeformableAttention",
-    version="1.0.0+hvstudio.1",
+    version="1.0.0+hvstudio.2",
     author="Weijie Su",
     url="https://github.com/fundamentalvision/Deformable-DETR",
     description="PyTorch Wrapper for CUDA Functions of Multi-Scale Deformable Attention",
